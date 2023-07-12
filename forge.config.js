@@ -1,4 +1,19 @@
+require('dotenv').config();
 module.exports = {
+  publishers: [
+    {
+      name: '@electron-forge/publisher-github',
+      config: {
+        repository: {
+          owner: 'mohit-sanwal',
+          name: 'basic-Electron-App'
+        },
+        authToken: process.env.GITHUB_TOKEN,
+        prerelease: false,
+        draft: true
+      }
+    }
+  ],
   packagerConfig: {
     asar: true,
   },
@@ -6,7 +21,10 @@ module.exports = {
   makers: [
     {
       name: '@electron-forge/maker-squirrel',
-      config: {},
+      config: {
+        certificateFile: './cert.pfx',
+        certificatePassword: process.env.CERTIFICATE_PASSWORD
+      },
     },
     {
       name: '@electron-forge/maker-zip',
