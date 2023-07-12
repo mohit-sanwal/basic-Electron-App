@@ -1,0 +1,17 @@
+{
+  "name": "first-app-electron",
+  "version": "1.0.0",
+  "description": "first electron application",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "dev": "nodemon --exec electron ."
+  },
+  "author": "mohit sanwal",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^25.2.0",
+    "nodemon": "^3.0.1"
+  }
+}
