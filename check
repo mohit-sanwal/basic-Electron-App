@@ -1,0 +1,10 @@
+Replace dev script with nodemon --exec electron (without dot) - it's loading
+
+PascalCase modules are instantiable class constructors (e.g. BrowserWindow, Tray, Notification) 
+whereas camelCase modules are not instantiable (e.g. app, ipcRenderer, webContents).
+
+ECMAScript modules (i.e. using import to load a module) are currently not directly supported in Electron. You can find more information about the state of ESM in Electron in electron/electron#21457.
+
+what is main and renderer process.
+
+ Electron's inter-process communication (IPC) modules.
