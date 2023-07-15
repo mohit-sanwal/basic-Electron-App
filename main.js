@@ -2,6 +2,18 @@ const { app, BrowserWindow, ipcMain, dialog, globalShortcut, Tray, Menu} = requi
 const path = require('path')
 const fs = require('fs')
 const https = require('https')
+
+  // ADDING MENU
+  let isMac = process.platform === 'darwin'
+  let templateMwnu = 
+  [ 
+    ...isMac ? {label: 'Blog', submenu: [{label: 'About'},{label: 'Version'}]} : [],
+    {label: 'File'},
+    {label: 'operation', 
+    submenu: [isMac ? {role: 'close', label: 'Close'} : {role: 'quit', label: 'Quit'},{label: 'Zoom'}]}
+  ]
+  const menu = Menu.buildFromTemplate(templateMwnu);
+  Menu.setApplicationMenu(menu);
 const createWindow = () => {
   const win = new BrowserWindow({
     width: 800,
@@ -27,6 +39,8 @@ const createWindow = () => {
       buttonLabel: 'select file'
     });
   })
+
+
 }
 
 
