@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, dialog, globalShortcut} = require('electron');
+const { app, BrowserWindow, ipcMain, dialog, globalShortcut, Tray, Menu} = require('electron');
 const path = require('path')
 const fs = require('fs')
 const https = require('https')
@@ -12,6 +12,15 @@ const createWindow = () => {
   })
    console.log('hello', path.join(__dirname, 'preload.js'))
   win.loadFile('index.html')
+  // add tray
+  tray = new Tray('ex.png');
+  tray.setToolTip("try electron app..")
+  // tray.on('click', ()=> {
+  //   win.isVisible() ? win.hide() : win.show()
+  // })
+  let template = [{label: 'item1', type: 'radio'},{label: 'item2', type: 'radio'}]
+  const contextMenu = Menu.buildFromTemplate(template);
+  tray.setContextMenu(contextMenu);
   globalShortcut.register('Shift + K', () => {
     dialog.showOpenDialog({
       defaultPath: app.getPath('desktop'),
