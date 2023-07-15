@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain,  } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog, globalShortcut} = require('electron');
 const path = require('path')
 const fs = require('fs')
 const https = require('https')
@@ -12,6 +12,12 @@ const createWindow = () => {
   })
    console.log('hello', path.join(__dirname, 'preload.js'))
   win.loadFile('index.html')
+  globalShortcut.register('Shift + K', () => {
+    dialog.showOpenDialog({
+      defaultPath: app.getPath('desktop'),
+      buttonLabel: 'select file'
+    });
+  })
 }
 
 
